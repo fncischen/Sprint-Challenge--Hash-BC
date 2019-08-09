@@ -40,8 +40,8 @@ def get_indices_of_item_weights(weights, length, limit):
     return None
 
 
-e = [ 4, 6, 10, 15, 16 ]
-print(get_indices_of_item_weights(e,5,21))
+e = [ 4, 4 ]
+print(get_indices_of_item_weights(e,2,8))
 
 def print_answer(answer):
     if answer is not None:
