@@ -39,10 +39,7 @@ def reconstruct_trip(tickets, length):
     i = 1 
     while currentDestination != "NONE":
         nextDestination = hash_table_retrieve(hashtable, currentDestination)
-        if nextDestination == "NONE":
-            break
-        else:
-            route[i] = nextDestination
+        route[i] = nextDestination
         # third step place each source and destination onto the routes
         currentDestination = nextDestination
         i += 1 
@@ -64,4 +61,4 @@ tickets = [
     Ticket("BHM","FLG" )
   ]
 
-print(reconstruct_trip(tickets,9))
+print(reconstruct_trip(tickets,10))
