@@ -8,7 +8,7 @@ from uuid import uuid4
 from timeit import default_timer as timer
 
 import random
-
+import json
 
 def proof_of_work(last_proof):
     """
@@ -38,10 +38,12 @@ def valid_proof(last_hash, proof):
 
     IE:  last_hash: ...999123456, new hash 123456888...
     """
-
     # TODO: Your code here!
-    guess_hash = hashlib.sha256(proof).hexdigest()
-    
+    p = json.dumps(proof, sort_keys=True).encode()
+    guess_hash = hashlib.sha256(p).hexdigest()
+
+    last_hash = str(last_hash)
+
     return last_hash[(len(last_hash)-7):] == guess_hash[:6]
 
 if __name__ == '__main__':
