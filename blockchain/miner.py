@@ -24,7 +24,7 @@ def proof_of_work(last_proof):
     print("Searching for next proof")
     proof = 0
     #  TODO: Your code here
-    while not self.valid_proof(last_proof, proof):
+    while not valid_proof(last_proof, proof):
         proof += 1
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         node = sys.argv[1]
     else:
-        node = "https://lambda-coin.herokuapp.com"
+        node = "http://lambda-coin-test-1.herokuapp.com/"
 
     coins_mined = 0
 
