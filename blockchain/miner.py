@@ -8,7 +8,7 @@ from uuid import uuid4
 from timeit import default_timer as timer
 
 import random
-
+import json
 
 def proof_of_work(last_proof):
     """
@@ -24,6 +24,8 @@ def proof_of_work(last_proof):
     print("Searching for next proof")
     proof = 0
     #  TODO: Your code here
+    while not valid_proof(last_proof, proof):
+        proof += 1
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
@@ -36,17 +38,20 @@ def valid_proof(last_hash, proof):
 
     IE:  last_hash: ...999123456, new hash 123456888...
     """
-
     # TODO: Your code here!
-    pass
+    p = json.dumps(proof, sort_keys=True).encode()
+    guess_hash = hashlib.sha256(p).hexdigest()
 
+    last_hash = str(last_hash)
+
+    return last_hash[(len(last_hash)-7):] == guess_hash[:6]
 
 if __name__ == '__main__':
     # What node are we interacting with?
     if len(sys.argv) > 1:
         node = sys.argv[1]
     else:
-        node = "https://lambda-coin.herokuapp.com"
+        node = "http://lambda-coin-test-1.herokuapp.com/"
 
     coins_mined = 0
 
